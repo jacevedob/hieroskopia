@@ -41,9 +41,9 @@ class InferNumeric:
         series = series.str.strip()
         # Add 0 if start with .
         series = Series(np.array(
-            [re.sub(r'^(?=.)([+-]?)(\.)([0-9]*)$', '\\g<1>0\\g<2>\\g<3>', str(s)) for s in
+            [re.sub(r'^(?=.)([+-]?)(\.)(\d*)$', '\\g<1>0\\g<2>\\g<3>', str(s)) for s in
              series.values])) if Evaluator(
-            series).series_contains(r'^(?=.)([+-]?)(\.)([0-9]*)$') else series
+            series).series_contains(r'^(?=.)([+-]?)(\.)(\d*)$') else series
 
         # If the series contains any number and not have any invalid character
         if Evaluator(series).series_match(simple_int_pattern) and not Evaluator(series).series_match(chars_not_allowed):
